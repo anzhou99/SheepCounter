@@ -1,0 +1,85 @@
+.main {
+    width: 100vw;
+    height: 100vh;
+    background-color: #767c7c;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    .logoZone {
+        margin: auto;
+        background-color: #2a516e;
+        width: 690px;
+        height: 230px;
+        border-radius: 50%;
+        position: absolute;
+        top: 30%;
+        z-index: 9;
+
+        .name {
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 50px;
+            position: absolute;
+            top: 25%;
+        }
+        .author {
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 36px;
+            position: absolute;
+            top: 65%;
+        }
+    }
+    .enterZone {
+        position: absolute;
+        bottom: 15%;
+        color: #fff;
+        font-size: 36px;
+        letter-spacing: 2px;
+        z-index: 9;
+        font-weight: bold;
+
+        .scale {
+            animation-duration: 1.5s;
+            animation-fill-mode: both;
+            animation-name: scale;
+            animation-iteration-count: infinite;
+        }
+    }
+    .bgImg {
+        filter: brightness(50%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 1024px;
+        height: 1800px;
+        animation: move infinite 10s linear reverse;
+    }
+}
+@keyframes scale {
+    10% {
+        font-size: 140%;
+    }
+    40% {
+        font-size: 80%;
+    }
+    100% {
+        font-size: 100%;
+    }
+}
+
+@keyframes move {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -100px;
+    }
+    100% {
+        top: 0;
+    }
+}

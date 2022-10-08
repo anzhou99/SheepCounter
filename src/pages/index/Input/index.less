@@ -1,0 +1,49 @@
+.inputZone {
+    width: 500px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50px;
+    background-color: #acbeca;
+    background-image: url(../../../../assets/imgs/inputMask.png);
+    background-size: 100%;
+    position: relative;
+    .sInput {
+        width: 100%;
+        height: 100%;
+        padding: 10px 40px;
+        letter-spacing: 6px;
+        position: relative;
+        .sValue {
+            font-size: 60px;
+            font-family: 'handwriting';
+        }
+        .sCursor {
+            position: absolute;
+            display: inline-block;
+            width: 3px;
+            height: 50px;
+            margin-left: 4px;
+            background: #000;
+            top: 24px;
+            animation: blink 800ms infinite reverse;
+        }
+    }
+
+    .sTip {
+        position: absolute;
+        font-size: 60px;
+        font-family: 'handwriting';
+        z-index: 1;
+        top: 10px;
+        left: 40px;
+        color: rgb(145, 142, 142);
+    }
+}
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

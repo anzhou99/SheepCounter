@@ -1,0 +1,118 @@
+/* stylelint-disable at-rule-no-unknown */
+@sheepInPositionY: -300px;
+@sheepInPositionX: -500px;
+@sheepStayPositionY: calc(40vh - 400px);
+@sheepStayPositionX: calc(50vw - 200px);
+@sheepOutPositionY: -300px;
+@sheepOutPositionX: calc(100vw);
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #206177;
+    overflow: hidden;
+    position: relative;
+    .moon {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 40px;
+        right: 40px;
+    }
+    .land1 {
+        width: 100vw;
+        height: 60vh;
+        position: absolute;
+        bottom: 0;
+        z-index: 10;
+    }
+    .land2 {
+        width: 100vw;
+        height: 65vh;
+        position: absolute;
+        bottom: 0;
+        z-index: 8;
+    }
+    .land3 {
+        width: 100vw;
+        height: 70vh;
+        position: absolute;
+        bottom: 0;
+        z-index: 7;
+    }
+
+    .sheep {
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        z-index: 9;
+
+        Image {
+            width: 100%;
+            height: 100%;
+        }
+        &.in {
+            top: @sheepInPositionY;
+            right: @sheepInPositionX;
+            animation: XIn 0.2s cubic-bezier(0.28, 0.58, 0.4, 0.73),
+                YIn 0.2s linear;
+            animation-fill-mode: forwards;
+        }
+        &.out {
+            top: @sheepStayPositionY;
+            right: @sheepStayPositionX;
+            animation: XOut 0.2s linear,
+                YOut 0.2s cubic-bezier(0.28, 0.58, 0.4, 0.73);
+            animation-fill-mode: forwards;
+        }
+    }
+
+    .input {
+        width: 100%;
+        margin: 660px 0 50px;
+        z-index: 999;
+    }
+
+    .keyboard {
+        width: 500px;
+        z-index: 999;
+    }
+}
+
+@keyframes XIn {
+    0% {
+        right: @sheepInPositionX;
+    }
+    100% {
+        right: @sheepStayPositionX;
+    }
+}
+@keyframes YIn {
+    0% {
+        top: @sheepInPositionY;
+    }
+    100% {
+        top: @sheepStayPositionY;
+    }
+}
+
+@keyframes XOut {
+    0% {
+        right: @sheepStayPositionX;
+    }
+    100% {
+        right: @sheepOutPositionX;
+    }
+}
+@keyframes YOut {
+    0% {
+        top: @sheepStayPositionY;
+    }
+    100% {
+        top: @sheepOutPositionY;
+    }
+}
