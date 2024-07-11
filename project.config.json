@@ -1,15 +1,18 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "SheepCounter",
-  "description": "",
-  "appid": "wx29f509ac59a1cd2e",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "enhance": false,
-    "compileHotReLoad": false,
-    "postcss": false,
-    "minified": false
-  },
-  "compileType": "miniprogram"
+    "miniprogramRoot": "./dist",
+    "projectname": "SheepCounter",
+    "description": "",
+    "appid": "wx29f509ac59a1cd2e",
+    "setting": {
+        "urlCheck": true,
+        "es6": true,
+        "enhance": false,
+        "compileHotReLoad": false,
+        "postcss": false,
+        "minified": true,
+        "minifyWXSS": true,
+        "minifyWXML": true,
+        "ignoreUploadUnusedFiles": true
+    },
+    "compileType": "miniprogram"
 }

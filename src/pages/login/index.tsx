@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro';
 import { View, Text, Image } from '@tarojs/components';
 
-import SheepBg from '../../../assets/imgs/sheepBg.png';
+import SheepBg from '@/assets/imgs/sheepBg.png';
 
 import style from './index.less';
 

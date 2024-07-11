@@ -1,6 +1,6 @@
 import { Image } from '@tarojs/components';
-import DelPng from '../../../../assets/imgs/del.png';
-import ConfirmPng from '../../../../assets/imgs/confirm.png';
+import DelPng from '@/assets/imgs/del.png';
+import ConfirmPng from '@/assets/imgs/confirm.png';
 
 import type { ReactElement } from 'react';
 import type { ImageProps } from '@tarojs/components';

@@ -1,0 +1,24 @@
+.imgBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: 4px solid rgb(215, 99, 92);
+    background-color: rgb(255, 238, 163);
+    border-radius: 50%;
+    &.paused::after {
+        position: absolute;
+        left: 24px;
+        top: -2px;
+        content: '';
+        display: block;
+        width: 4px;
+        height: calc(100% + 2px);
+        background: rgb(215, 99, 92);
+        transform: rotate(-45deg);
+        transform-origin: 50% 505;
+    }
+    .noteImg {
+        width: 100%;
+        height: 100%;
+    }
+}

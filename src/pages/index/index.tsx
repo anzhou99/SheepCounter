@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Image } from '@tarojs/components';
 
 import KeyBoard from './KeyBoard';
+import Input from './Input';
+import BgmIcon from './BgmIcon';
 
-import SheepPng from '../../../assets/imgs/sheep.png';
-import MoonPng from '../../../assets/imgs/moon.png';
-import LandPng1 from '../../../assets/imgs/land1.png';
-import LandPng2 from '../../../assets/imgs/land2.png';
-import LandPng3 from '../../../assets/imgs/land3.png';
+import SheepPng from '@/assets/imgs/sheep.png';
+import MoonPng from '@/assets/imgs/moon.png';
+import LandPng1 from '@/assets/imgs/land1.png';
+import LandPng2 from '@/assets/imgs/land2.png';
+import LandPng3 from '@/assets/imgs/land3.png';
 
 import style from './index.less';
-import Input from './Input';
 
 const Index = () => {
     const [isSheepIn, setIsSheepIn] = useState(true);
@@ -30,22 +31,22 @@ const Index = () => {
 
     return (
         <View className={style.main}>
-            <Image src={MoonPng} className={style.moon} />
+            <View className={style.icon}>
+                <BgmIcon />
+            </View>
 
+            {/* <Image src={MoonPng} className={style.moon} /> */}
             <Image src={LandPng1} className={style.land1} />
             <Image src={LandPng2} className={style.land2} />
             <Image src={LandPng3} className={style.land3} />
-
             <View
                 className={`${style.sheep} ${isSheepIn ? style.in : style.out}`}
             >
                 <Image src={SheepPng} />
             </View>
-
             <View className={style.input}>
                 <Input inputValue={inputValue} tip={tip} />
             </View>
-
             <View className={style.keyboard}>
                 <KeyBoard
                     inputValue={inputValue}
