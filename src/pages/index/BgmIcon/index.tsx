@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { View, Image } from '@tarojs/components';
 import Taro, { InnerAudioContext } from '@tarojs/taro';
 
-import bgm from '@/assets/audio/bgm.mp3';
+import BgmNight from '@/assets/audio/night.mp3';
 
 import style from './index.less';
 
@@ -16,7 +16,7 @@ const BgmIcon = () => {
             bgmContextRef.current.volume = 0.8;
             bgmContextRef.current.autoplay = true;
             bgmContextRef.current.loop = true;
-            bgmContextRef.current.src = bgm;
+            bgmContextRef.current.src = BgmNight;
             setBgmPlaying(true);
         }
         return () => {

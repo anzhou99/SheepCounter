@@ -5,8 +5,11 @@ import KeyBoard from './KeyBoard';
 import Input from './Input';
 import BgmIcon from './BgmIcon';
 
-import SheepPng from '@/assets/imgs/sheep.png';
-import MoonPng from '@/assets/imgs/moon.png';
+import SheepPng from '@/assets/imgs/sheepBody.png';
+import SheepLeftEarPng from '@/assets/imgs/sheepLeftEar.png';
+import SheepRightEarPng from '@/assets/imgs/sheepRightEar.png';
+import SheepEyesPng from '@/assets/imgs/sheepEyes.png';
+
 import LandPng1 from '@/assets/imgs/land1.png';
 import LandPng2 from '@/assets/imgs/land2.png';
 import LandPng3 from '@/assets/imgs/land3.png';
@@ -35,14 +38,16 @@ const Index = () => {
                 <BgmIcon />
             </View>
 
-            {/* <Image src={MoonPng} className={style.moon} /> */}
             <Image src={LandPng1} className={style.land1} />
             <Image src={LandPng2} className={style.land2} />
             <Image src={LandPng3} className={style.land3} />
             <View
                 className={`${style.sheep} ${isSheepIn ? style.in : style.out}`}
             >
-                <Image src={SheepPng} />
+                <Image className={style.sheepBody} src={SheepPng} />
+                <Image className={style.sheepLeftEar} src={SheepLeftEarPng} />
+                <Image className={style.sheepRightEar} src={SheepRightEarPng} />
+                <Image className={style.sheepEyes} src={SheepEyesPng} />
             </View>
             <View className={style.input}>
                 <Input inputValue={inputValue} tip={tip} />
