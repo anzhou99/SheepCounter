@@ -14,16 +14,16 @@
         "strictNullChecks": true,
         "sourceMap": true,
         "baseUrl": ".",
-        "paths": {
-            "@/assets/*": ["./assets/*"],
-            "@/src/*": ["./src/*"]
-        },
         "rootDir": ".",
         "jsx": "react-jsx",
         "allowJs": true,
         "resolveJsonModule": true,
-        "typeRoots": ["node_modules/@types"]
+        "typeRoots": ["node_modules/@types"],
+        "paths": {
+            "@/assets/*": ["./assets/*"],
+            "@/src/*": ["./src/*"]
+        }
     },
-    "include": ["./src", "./types"],
+    "include": ["./src", "./types", "styled-system"],
     "compileOnSave": false
 }

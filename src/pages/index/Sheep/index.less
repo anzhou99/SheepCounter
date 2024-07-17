@@ -1,0 +1,57 @@
+.main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    Image {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        top: 0;
+        left: 0;
+        &.sheepLeftEar {
+            z-index: 1;
+            transform-origin: 21% 15%;
+            animation: ear-left 4s cubic-bezier(0.6, -0.28, 0.74, 0.05) 4s
+                infinite alternate-reverse;
+        }
+        &.sheepBody {
+            z-index: 2;
+        }
+        &.sheepRightEar {
+            z-index: 3;
+            transform-origin: 57% 15%;
+            animation: ear-right 2s cubic-bezier(0.6, -0.28, 0.74, 0.05) 2s
+                infinite alternate-reverse;
+        }
+        &.sheepEyes {
+            z-index: 3;
+            animation: eyes 4s cubic-bezier(0.6, -0.28, 0.74, 0.05) 3s infinite
+                alternate-reverse;
+        }
+    }
+}
+
+@keyframes ear-left {
+    85% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes ear-right {
+    85% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(18deg);
+    }
+}
+
+@keyframes eyes {
+    55% {
+        transform: translate(-2px, -4px);
+    }
+}

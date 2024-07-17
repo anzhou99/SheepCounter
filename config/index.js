@@ -12,8 +12,7 @@ const config = {
     outputRoot: 'dist',
     alias: {
         '@/assets': path.resolve(__dirname, '..', 'assets'),
-
-        '@/src': path.resolve(__dirname, '..', 'src')
+        '@/src': path.resolve(__dirname, '..', 'src'),
     },
     plugins: [],
     defineConstants: {},
@@ -28,7 +27,7 @@ const config = {
         minify: {
             enable: true,
             config: {
-                target: 'es2021'
+                target: 'es2017'
             }
         }
     },
