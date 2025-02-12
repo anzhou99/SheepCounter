@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import Taro, { useReady } from '@tarojs/taro';
+import { useState, useRef, useEffect } from 'react';
+import Taro, { InnerAudioContext, useReady } from '@tarojs/taro';
 import { View, Image } from '@tarojs/components';
 
 import KeyBoard from './KeyBoard';
@@ -8,6 +8,7 @@ import Sheep from './Sheep';
 import BgmIcon from './BgmIcon';
 import Sky from './Sky';
 
+import BgmGlitch from '@/assets/audio/glitch.mp3';
 import LandPng1 from '@/assets/imgs/land1.png';
 import LandPng2 from '@/assets/imgs/land2.png';
 import LandPng3 from '@/assets/imgs/land3.png';
@@ -66,8 +67,33 @@ function enterAnimate(selector, option, time, callback) {
     );
 }
 
+const randomSheepChance = (): number | undefined => {
+    if (Math.random() < 0.01) {
+        return Math.floor(Math.random() * 2) + 2; // 生成 2-4 之间的随机整数
+    }
+    return undefined;
+};
+
 const Index = () => {
-    const [sheepCount, setSheepCount] = useState(1);
+    const [sheepCount, setSheepCount] = useState(1); // 当前数了sheepCount只羊
+
+    const [showingSheep, setShowingSheep] = useState(1); // 当前界面中会展示showingSheep只羊
+
+    // 故障音
+    const breakDownAudioContextRef = useRef<InnerAudioContext>();
+    useEffect(() => {
+        if (!breakDownAudioContextRef.current) {
+            breakDownAudioContextRef.current = Taro.createInnerAudioContext();
+            breakDownAudioContextRef.current.volume = 0.1;
+            breakDownAudioContextRef.current.autoplay = false;
+            breakDownAudioContextRef.current.loop = true;
+            breakDownAudioContextRef.current.playbackRate = 0.8;
+            breakDownAudioContextRef.current.src = BgmGlitch;
+        }
+        return () => {
+            breakDownAudioContextRef.current?.destroy();
+        };
+    }, []);
 
     const [inputValue, setInputValue] = useState('');
     const [tip, setTip] = useState('');
@@ -85,6 +111,17 @@ const Index = () => {
     const SheepBoundingRef = useRef({ top: 0, left: 0 });
     function getAnotherSheep() {
         setSheepCount(sheepCount + 1);
+
+        breakDownAudioContextRef.current!.stop();
+        if (showingSheep !== 1) {
+            setShowingSheep(1);
+        } else {
+            const res = randomSheepChance();
+            if (res) {
+                setShowingSheep(res);
+                breakDownAudioContextRef.current!.play();
+            }
+        }
         if (tip) setTip('');
 
         const { x, y, top, left } = SkyRef.current!.getPointPosition();
@@ -127,9 +164,22 @@ const Index = () => {
                     <BgmIcon />
                 </View>
 
-                <View id="sheep" className={style.sheep}>
-                    <Sheep></Sheep>
-                </View>
+                {showingSheep === 1 ? (
+                    <View id="sheep" className={style.sheep}>
+                        <Sheep></Sheep>
+                    </View>
+                ) : (
+                    <>
+                        <View>
+                            <View className={`${style.sheep} ${style.noise}`}>
+                                <Sheep></Sheep>
+                            </View>
+                            <View className={`${style.sheep} ${style.noiseBg}`}>
+                                <Sheep></Sheep>
+                            </View>
+                        </View>
+                    </>
+                )}
             </View>
             <View className={style.bottomArea}>
                 <View className={style.bgGroup}>
