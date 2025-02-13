@@ -1,0 +1,80 @@
+.atom {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.center {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: orange;
+    font-size: 40px;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 20px orange, 0 0 50px orange;
+}
+
+.orbit {
+    position: absolute; /* Change to absolute */
+    top: 20%; /* Center the orbit */
+    left: 0%; /* Center the orbit */
+    translate: -50%, -50%; /* Center it perfectly */
+    border-radius: 50%; /* Keep the elliptical shape */
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    transform-style: preserve-3d;
+    animation: rotate 3s linear infinite;
+}
+
+.orbit1 {
+    width: 200px; /* Major axis */
+    height: 120px; /* Minor axis */
+    transform: translate(-50%, -50%) rotateX(45deg); /* Combine centering and rotation */
+}
+
+.orbit2 {
+    width: 200px;
+    height: 120px;
+    transform: translate(-50%, -50%) rotateX(-45deg);
+    animation-duration: 5s;
+}
+
+.orbit3 {
+    width: 200px;
+    height: 120px;
+    transform: translate(-50%, -50%) rotateY(90deg);
+    animation-duration: 10s;
+}
+
+.electron {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.electron1 {
+    color: rgb(241, 82, 33);
+    text-shadow: 0 0 10px rgb(241, 82, 33), 0 0 30px rgb(241, 82, 33);
+}
+.electron2 {
+    color: rgb(184, 196, 18);
+    text-shadow: 0 0 10px rgb(184, 196, 18), 0 0 30px rgb(184, 196, 18);
+}
+.electron3 {
+    color: rgb(27, 145, 12);
+    text-shadow: 0 0 10px rgb(27, 145, 12), 0 0 30px rgb(27, 145, 12);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

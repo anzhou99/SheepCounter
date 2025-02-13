@@ -14,6 +14,7 @@ import LandPng2 from '@/assets/imgs/land2.png';
 import LandPng3 from '@/assets/imgs/land3.png';
 
 import style from './index.less';
+import Atom from '@/src/components/Atom';
 
 function lanuchAnmiate(selector, { translateX, translateY }, time, callback) {
     Taro?.getCurrentInstance()?.page?.animate?.(
@@ -95,6 +96,21 @@ const Index = () => {
         };
     }, []);
 
+    // 彩蛋一:1%概率出现故障彩蛋
+    function showBreakDownEffect() {
+        breakDownAudioContextRef.current!.stop();
+        if (showingSheep !== 1) {
+            setShowingSheep(1);
+        } else {
+            // 1%概率出现故障彩蛋
+            const res = randomSheepChance();
+            if (res) {
+                setShowingSheep(res);
+                breakDownAudioContextRef.current!.play();
+            }
+        }
+    }
+
     const [inputValue, setInputValue] = useState('');
     const [tip, setTip] = useState('');
 
@@ -112,16 +128,8 @@ const Index = () => {
     function getAnotherSheep() {
         setSheepCount(sheepCount + 1);
 
-        breakDownAudioContextRef.current!.stop();
-        if (showingSheep !== 1) {
-            setShowingSheep(1);
-        } else {
-            const res = randomSheepChance();
-            if (res) {
-                setShowingSheep(res);
-                breakDownAudioContextRef.current!.play();
-            }
-        }
+        showBreakDownEffect();
+
         if (tip) setTip('');
 
         const { x, y, top, left } = SkyRef.current!.getPointPosition();
@@ -145,17 +153,28 @@ const Index = () => {
         );
     }
 
+    const [showMorty, setShowMorty] = useState(false);
     useReady(() => {
         const query = Taro.createSelectorQuery();
         query.select('#sheep').boundingClientRect();
         query.exec((res) => {
             SheepBoundingRef.current = { top: res[0].top, left: res[0].left };
         });
+        // 彩蛋三:检查时间是否在3:00-5:00之间展示瑞莫蒂的脸
+        const now = new Date();
+        setShowMorty(now.getHours() >= 3 && now.getHours() < 5);
     });
+    console.log('sheepCount: ', sheepCount);
 
     return (
         <View className={style.main} id="main">
             <View className={style.topArea}>
+                {/* // 彩蛋二:数到42只羊后展示42彩蛋 */}
+                {sheepCount === 42 + 1 ? (
+                    <View className={style.atomBox}>
+                        <Atom></Atom>
+                    </View>
+                ) : null}
                 <View className={style.sky}>
                     <Sky ref={SkyRef}></Sky>
                 </View>
@@ -166,16 +185,16 @@ const Index = () => {
 
                 {showingSheep === 1 ? (
                     <View id="sheep" className={style.sheep}>
-                        <Sheep></Sheep>
+                        <Sheep showMorty={showMorty}></Sheep>
                     </View>
                 ) : (
                     <>
                         <View>
                             <View className={`${style.sheep} ${style.noise}`}>
-                                <Sheep></Sheep>
+                                <Sheep showMorty={showMorty}></Sheep>
                             </View>
                             <View className={`${style.sheep} ${style.noiseBg}`}>
-                                <Sheep></Sheep>
+                                <Sheep showMorty={showMorty}></Sheep>
                             </View>
                         </View>
                     </>
